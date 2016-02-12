@@ -1,0 +1,9 @@
+AtomicKitten:
+  Framework:
+    build:
+      target: '%FLOW_PATH_ROOT%Output/'
+      source:
+        framework:
+          partials: '%FLOW_PATH_PACKAGES%Application/AtomicKitten.Framework/Resources/Private/Partials/'
+          layouts: '%FLOW_PATH_PACKAGES%Application/AtomicKitten.Framework/Resources/Private/Layouts/'
+          templates: '%FLOW_PATH_PACKAGES%Application/AtomicKitten.Framework/Resources/Private/Templates/'
