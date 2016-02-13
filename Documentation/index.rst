@@ -6,31 +6,17 @@ This documentation covering version |release| has been rendered at: |today|
 Introduction
 ------------
 
-This package has very sparse documentation until now. You should fix this!
+This is the implementation of AtomicKitten, the framework itself. It's designed to parse your
+AtomicKitten and generate the static HTML.
 
-Some markup examples
---------------------
+If you are looking for AtomicKitten itself, refer to the `Github page
+<https://github.com/DanielSiepmann/AtomicKitten>`_ of the project.
 
-Backticks make for `inline code` and code blocks can be in various languages like YAML:
+    **Table of Contents**
 
-.. code-block:: yaml
+.. toctree::
+    :titlesonly:
 
-  TYPO3:
-    Neos:
-      Seo:
-        twitterCard:
-          siteHandle: '@neoscms'
-
-or PHP:
-
-.. code-block:: php
-  :linenos:
-
-  $foo = new Bar();
-  $drink = $bar->getKeeper()->order('White Russian');
-
-More information can be found at
-
-* https://www.neos.io/join/contribute.html
-* http://sphinx-doc.org/rest.html
-* https://docs.readthedocs.org/en/latest/getting_started.html#in-rst
+    Usage/index
+    Configuration/index
+    Contribution/index

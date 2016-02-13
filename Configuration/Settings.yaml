@@ -1,12 +1,18 @@
 AtomicKitten:
   Framework:
+    # All configuration options, used for build process.
     build:
+      # Folder to place generated output inside.
       target: '%FLOW_PATH_ROOT%Output/'
+      # Settings where different parts can be found, that will be parsed to generate output.
       source:
+        # Related to framework parts. You can overwrite them to change the surrounding parts and functionality of AtomicKitten.
         framework:
           partials: '%FLOW_PATH_PACKAGES%Application/AtomicKitten.Framework/Resources/Private/Partials/'
           layouts: '%FLOW_PATH_PACKAGES%Application/AtomicKitten.Framework/Resources/Private/Layouts/'
           templates: '%FLOW_PATH_PACKAGES%Application/AtomicKitten.Framework/Resources/Private/Templates/'
+        # Related to your AtomicKitten. Overwrite the paths to define where your templates can be found
+        # That's the only parrt you HAVE to configure.
         atomicKitten:
           partials: '%FLOW_PATH_PACKAGES%Application/AtomicKitten.Example/Resources/Private/Partials/'
           layouts: '%FLOW_PATH_PACKAGES%Application/AtomicKitten.Example/Resources/Private/Layouts/'
