@@ -1,13 +1,37 @@
 {
     "name": "atomickitten/framework",
     "type": "typo3-flow-package",
-    "description": "Add description here",
+    "description": "Atomic Design framework implemented using Flow and Fluid.",
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Daniel Siepmann",
+            "email": "coding@daniel-siepmann.de",
+            "homepage": "http://daniel-siepmann.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "docs": "http://atomickittenframework.readthedocs.org/"
+    },
+    "config": {
+        "vendor-dir": "Packages/Libraries",
+        "bin-dir": "bin"
+    },
     "require": {
-        "typo3/flow": "*"
+        "typo3/flow": "~3.1.0",
+        "atomickitten/example": "dev-master"
     },
     "autoload": {
         "psr-0": {
             "AtomicKitten\\Framework": "Classes"
         }
+    },
+    "scripts": {
+        "post-update-cmd": "TYPO3\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall",
+        "post-install-cmd": "TYPO3\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall",
+        "post-package-update": "TYPO3\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall",
+        "post-package-install": "TYPO3\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall"
     }
 }
