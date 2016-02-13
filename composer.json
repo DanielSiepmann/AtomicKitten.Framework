@@ -2,14 +2,23 @@
     "name": "atomickitten/framework",
     "type": "typo3-flow-package",
     "description": "Atomic Design framework implemented using Flow and Fluid.",
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Daniel Siepmann",
+            "email": "coding@daniel-siepmann.de",
+            "homepage": "http://daniel-siepmann.de",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "docs": "http://atomickittenframework.readthedocs.org/"
+    },
     "config": {
         "vendor-dir": "Packages/Libraries",
         "bin-dir": "bin"
     },
-    "repositories": [
-        { "type": "vcs", "url":  "https://github.com/DanielSiepmann/AtomicKitten.Example.git" },
-        { "type": "vcs", "url":  "https://github.com/DanielSiepmann/AtomicKitten.Framework.git" }
-    ],
     "require": {
         "typo3/flow": "~3.1.0",
         "atomickitten/example": "dev-master"
