@@ -24,6 +24,8 @@ use SplFileObject;
 use TYPO3\Flow\Annotations as Flow;
 
 /**
+ * Generator for AtomicKitten, will parse the templates and generate static
+ * html output.
  */
 class AtomicKitten
 {
@@ -34,13 +36,56 @@ class AtomicKitten
     protected $buildSettings;
 
     /**
-     * Generate files from framework.
-     *
-     * Contains the outer design like navigation.
+     * Generate files from AtomicKitten.
      *
      * @return void
      */
     public function build()
     {
+        // TODO: Get files from templates folder
+        $this->renderTemplates();
+        // TODO: Iterate over files and generate HTML.
+        // $resultFile = new SplFileObject($this->buildSettings['target'] . 'index.html', 'w');
+        // $resultFile->fwrite($view->render('Generator/Index'));
+    }
+
+    protected function renderTemplates()
+    {
+        // TODO: Move folder names (ordering) to settings?
+        foreach (['Atoms', 'Molecules', 'Organisms', 'Templates', 'Pages'] as $folderName) {
+            $folder = new \RecursiveDirectoryIterator(
+                $this->buildSettings['source']['atomicKitten']['templates'] . $folderName,
+                \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::SKIP_DOTS
+            );
+
+            foreach ($folder as $folderWithTemplates) {
+                $templateFiles = new \RecursiveDirectoryIterator(
+                    $folderWithTemplates->getPathname(),
+                    \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::SKIP_DOTS
+                );
+
+                foreach ($templateFiles as $templateFile) {
+                    // TODO: Set template filename somewhere via setting?
+                    $this->renderTemplate(
+                        $folderName
+                        . '/' . $folderWithTemplates->getBasename()
+                        . '/' . $templateFile->getBasename('.html')
+                    );
+                }
+            }
+        }
+    }
+
+    protected function renderTemplate($templateName)
+    {
+        $view = new View\AtomicKitten;
+        $targetFilename = $this->buildSettings['target'] . $templateName;
+
+        if (!is_dir(dirname($targetFilename))) {
+            mkdir(dirname($targetFilename), 0777, true);
+        }
+
+        $resultFile = new SplFileObject($targetFilename . '.html', 'w');
+        $resultFile->fwrite($view->render($templateName));
     }
 }

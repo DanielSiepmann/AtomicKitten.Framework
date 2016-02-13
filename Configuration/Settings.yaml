@@ -7,3 +7,7 @@ AtomicKitten:
           partials: '%FLOW_PATH_PACKAGES%Application/AtomicKitten.Framework/Resources/Private/Partials/'
           layouts: '%FLOW_PATH_PACKAGES%Application/AtomicKitten.Framework/Resources/Private/Layouts/'
           templates: '%FLOW_PATH_PACKAGES%Application/AtomicKitten.Framework/Resources/Private/Templates/'
+        atomicKitten:
+          partials: '%FLOW_PATH_PACKAGES%Application/AtomicKitten.Example/Resources/Private/Partials/'
+          layouts: '%FLOW_PATH_PACKAGES%Application/AtomicKitten.Example/Resources/Private/Layouts/'
+          templates: '%FLOW_PATH_PACKAGES%Application/AtomicKitten.Example/Resources/Private/Templates/'

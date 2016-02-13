@@ -50,7 +50,6 @@ class GeneratorCommandController extends \TYPO3\Flow\Cli\CommandController
         $framework = new Generator\Framework;
         $atomicKitten = new Generator\AtomicKitten;
 
-        // 1. Build general output
         $framework->build();
         $this->outputLine("\033[32m Generation of framework finished. \033[0m");
         // 2. Walk through templates
