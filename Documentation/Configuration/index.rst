@@ -12,10 +12,14 @@ This way, you can find all information about locations, load order and syntax at
 
 Nevertheless you still find the needed information in this documentation, too.
 
+.. _placeOfConfiguration:
+
 Place of configuration
 ----------------------
 
 Place your configuration file :file:`Settings.yaml` inside the folder :file:`Configuration` your Package 
+
+.. _configurationOptions:
 
 Configuration options
 ----------------------

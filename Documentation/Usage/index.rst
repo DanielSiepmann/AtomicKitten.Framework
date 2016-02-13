@@ -1,7 +1,11 @@
+.. _usage:
+
 Usage
 =====
 
 .. sectionauthor:: Daniel Siepmann <coding@daniel-siepmann.de>
+
+.. _usageGenerate:
 
 Generate
 --------
