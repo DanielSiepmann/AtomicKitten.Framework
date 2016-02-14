@@ -1,0 +1,23 @@
+@startuml
+
+start
+
+:Get all template files;
+
+:Sort files;
+
+:Generate static HTML for each file;
+
+:Return structure to Framework generator;
+
+:Generate static HTML for all subparts and parts;
+
+:Generate static HTML for "all";
+
+:Generate outer framework;
+
+:Generate Navigation;
+
+end
+
+@enduml

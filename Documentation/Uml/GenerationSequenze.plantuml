@@ -1,0 +1,8 @@
+@startuml
+
+GeneratorCommandController -> GeneratorCommandController: cleanCommand
+GeneratorCommandController -> "Generator\AtomicKitten": build
+"Generator\AtomicKitten" -> "Generator\AtomicKitten": getAllTemplateFiles
+"Generator\AtomicKitten" <-- "Generator\AtomicKitten": template files
+
+@enduml
