@@ -29,7 +29,7 @@ use AtomicKitten\Framework\Service\Generator;
  *
  * @Flow\Scope("singleton")
  */
-class GeneratorCommandController extends \TYPO3\Flow\Cli\CommandController
+class GeneratorCommandController extends CommandController
 {
     /**
      * @Flow\InjectConfiguration(package="AtomicKitten.Framework", path="build")
@@ -51,11 +51,10 @@ class GeneratorCommandController extends \TYPO3\Flow\Cli\CommandController
         $atomicKitten = new Generator\AtomicKitten;
 
         $framework->build();
-        $this->outputLine("\033[32m Generation of framework finished. \033[0m");
-        // 2. Walk through templates
-        //  2.1 Parse structure
+        $this->outputLine('Generation of framework finished.', [], CommandController::OK);
         $atomicKitten->build();
-        $this->outputLine("\033[32m Generation finished. \033[0m");
+
+        $this->outputLine('Generation finished.', [], CommandController::OK);
     }
 
     /**
@@ -70,7 +69,6 @@ class GeneratorCommandController extends \TYPO3\Flow\Cli\CommandController
         }
         mkdir($this->buildSettings['target']);
 
-        // TODO: Find to add color instead of writing this ugly strings.
-        $this->outputLine("\033[32m Cleaned target folder. \033[0m");
+        $this->outputLine('Cleaned target folder.', [], CommandController::OK);
     }
 }
