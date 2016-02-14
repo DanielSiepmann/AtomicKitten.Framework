@@ -45,8 +45,3 @@ Run `./flow generator:build` and open :file:`Output/index.html` in your web brow
 .. tip::
 
     On OS X just run: `./flow generator:build && open Output/index.html`
-
-.. todo::
-
-    Fix command, to allow deletion of folder, even if files are inside. Currently you will get an
-    error that php could not delete the folder, because there are files in it.

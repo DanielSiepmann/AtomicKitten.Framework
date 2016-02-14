@@ -66,8 +66,7 @@ class GeneratorCommandController extends \TYPO3\Flow\Cli\CommandController
     public function cleanCommand()
     {
         if (is_dir($this->buildSettings['target'])) {
-            // TODO: Check how to delete folder containing files.
-            rmdir($this->buildSettings['target']);
+            \TYPO3\Flow\Utility\Files::removeDirectoryRecursively($this->buildSettings['target']);
         }
         mkdir($this->buildSettings['target']);
 
