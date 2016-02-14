@@ -44,7 +44,7 @@ class Framework
      */
     public function build()
     {
-        $view = new View\Framework;
+        $view = new View\AtomicKitten;
         $resultFile = new SplFileObject($this->buildSettings['target'] . 'index.html', 'w');
         $resultFile->fwrite($view->render('Generator/Index'));
     }

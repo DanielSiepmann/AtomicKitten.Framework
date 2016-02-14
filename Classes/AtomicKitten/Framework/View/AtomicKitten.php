@@ -26,10 +26,6 @@ use TYPO3\Fluid\View\StandaloneView;
 
 /**
  * View to use, which provides basic auto loading.
- *
- * TODO: Write view for framework & another one for AtomicKitten
- *       Check what both Views have in common and refactor. E.g. to traits?
- *       Or another class that will be injected.
  */
 class AtomicKitten extends StandaloneView
 {
@@ -76,12 +72,12 @@ class AtomicKitten extends StandaloneView
      *
      * @return void
      */
-    protected function setPathsFromOptions()
+    public function setPathsFromOptions($optionsPath = 'AtomicKitten.Framework.build.source.framework')
     {
         $configuration = $this->objectManager->get(ConfigurationManager::class)
             ->getConfiguration(
                 ConfigurationManager::CONFIGURATION_TYPE_SETTINGS,
-                'AtomicKitten.Framework.build.source.atomicKitten'
+                $optionsPath
             );
 
         $this->setLayoutRootPath($configuration['layouts']);

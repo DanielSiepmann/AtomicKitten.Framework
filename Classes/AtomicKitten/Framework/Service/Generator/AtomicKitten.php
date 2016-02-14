@@ -79,6 +79,7 @@ class AtomicKitten
     protected function renderTemplate($templateName)
     {
         $view = new View\AtomicKitten;
+        $view->setPathsFromOptions('AtomicKitten.Framework.build.source.atomicKitten');
         $targetFilename = $this->buildSettings['target'] . $templateName;
 
         if (!is_dir(dirname($targetFilename))) {
