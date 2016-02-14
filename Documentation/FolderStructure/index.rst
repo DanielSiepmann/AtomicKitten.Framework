@@ -50,21 +50,27 @@ it's recommend to follow this structure::
 
 The only important part for AtomicKitten is inside :file:`Templates` as it's the only part parsed by
 AtomicKitten. The first level has to be as documented above, as currently all folders are checked
-hard coded, that is in the following order: Atoms, Molecules, Organisms, Pages, Templates.
-Inside each folder, you can create another level of folders that will build the navigation (once
-it's implemented). The numbers are up to you and will used for sorting in navigation. The same
-applies to :file:`.html`-files inside the folders.
+hard coded, that is in the following order: Atoms, Molecules, Organisms, Pages, Templates.  Inside
+each folder, you have to create another level of folders that will build the navigation (once it's
+implemented). The numbers are up to you and will be used for sorting in navigation. The same applies
+to :file:`.html`-files inside the folders.
 
-:file:`Partials` and :file:`Layouts` are fully up to you. The Example-package will use provide the
-real Atomic Design inside :file:`Partials` and use :file:`Templates` to generate the output for
-AtomicKitten.
+.. todo::
+
+    Implement generation of navigation, to access all generated output from within the browser.
+    Currently you have to open each file inside the browser on your own.
+    Also part of the implementation should be the mentioned sorting of files.
+
+The folders :file:`Partials` and :file:`Layouts` are fully up to you. The Example-package will use
+Partials, to provide the real Atomic Design inside and use :file:`Templates` to generate the output
+for AtomicKitten.
 
 .. note::
 
     The structure inside :file:`Templates` will change to enable the reuse in further projects, as
     mentioned in section :ref:`benefits`.
 
-As AtomicKitten uses the `TYPO3Fluid/Fluid <https://github.com/TYPO3Fluid/Fluid>`_ template engine,
+As AtomicKitten uses the `TYPO3 Fluid <https://github.com/TYPO3Fluid/Fluid>`_ template engine,
 all information about the different folders are available at the `official Fluid documentation
 <https://github.com/TYPO3Fluid/Fluid/blob/master/doc/FLUID_STRUCTURE.md>`_.
 
@@ -85,3 +91,7 @@ of a web server::
     │   └── 01-Text
     │       └── Byline.html
     └── index.html
+
+.. note::
+
+    The structure will change to provide all functionalities.

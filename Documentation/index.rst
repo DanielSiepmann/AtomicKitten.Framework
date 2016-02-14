@@ -9,14 +9,19 @@ About
 -----
 
 AtomicKitten is an Atomic Design framework like `PatternLab <http://patternlab.io/>`_, implemented
-in `FLOW framework <http://flowframework.io/>`_ with Fluid Template Engine.
+in `FLOW framework <http://flowframework.io/>`_ with  `TYPO3 Fluid
+<https://github.com/TYPO3Fluid/Fluid>`_ Template Engine.
+
+If you don't know Atomic Design yet, check out the book `Atomic Design
+<http://atomicdesign.bradfrost.com/chapter-2/>`_ by Brad Frost, or his `blog post
+<http://bradfrost.com/blog/post/atomic-web-design/>`_.
 
 .. _goal:
 
 Goal
 ----
 
-Reimplement `PatternLab <http://patternlab.io/>`_ using `PHP framework Flow
+Reimplement `PatternLab <http://patternlab.io/>`_ using PHP framework `Flow
 <http://flowframework.readthedocs.org/>`_ and `TYPO3 Fluid <https://github.com/TYPO3Fluid/Fluid>`_
 as Template Engine.
 
@@ -33,7 +38,7 @@ It's possible to build a static version of a new website with real data to test 
 using Fluid as template engine and following conventions, you are able to use the development state
 as it is inside your `TYPO3 CMS <https://typo3.org/>`_, `Flow
 <http://flowframework.readthedocs.org/>`_ or `Neos <https://www.neos.io/>`_ project, without any
-additional costs.  Enabling you to modify your dynamic website in a closed environment with static
+additional costs. Enabling you to modify your dynamic website in a closed environment with static
 HTML as result, enabling you to run `Behat <http://docs.behat.org/>`_ tests or other testings.
 Following Atomic Design, it enables you to create unit tests for your CSS / HTML.
 
@@ -44,10 +49,9 @@ Development State
 
 The project is in very early state. First very basic features are already implemented. The
 documentation is in sync with current development. Everything that's documented is implemented.
-To get an impression or contribute, follow the :ref:`gettingStarted`.
+To get an impression, follow the :ref:`gettingStarted`.
 
-Also check out :ref:`changelog` to keep track of development, or watch the project on `Github
-<https://github.com/DanielSiepmann/AtomicKitten.Framework>`_.
+You can watch the project on `Github <https://github.com/DanielSiepmann/AtomicKitten.Framework>`_.
 
 .. _name:
 
@@ -67,3 +71,4 @@ colleague was inspired by https://www.youtube.com/watch?v=5u-N_EtVESQ
     Usage/index
     Configuration/index
     FolderStructure/index
+    Todos/index

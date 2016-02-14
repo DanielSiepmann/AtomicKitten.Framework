@@ -30,4 +30,4 @@ need. As every configuration has a default value, you will find all available co
 the file. Beside the configuration path and default value, you will find documentation inside that
 file what each configuration option is for.
 
-So there will be no additional configuration at this place.
+So there will be no additional configuration here.

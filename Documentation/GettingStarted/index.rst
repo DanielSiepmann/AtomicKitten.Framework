@@ -38,10 +38,18 @@ Content of :file:`composer.json`::
 
 Please adjust `vendor` and `projectname` as needed.
 
+
 .. note::
+
     During development, we need to set the `minimum-stability` to `dev`. Once the first version is
     out that will be removed. Until then, composer will clone most dependencies, which can take some
     time.
+
+.. todo::
+
+    Remove the need of reducing stability, but use Compoer `Branch alias
+    <https://getcomposer.org/doc/articles/aliases.md#branch-alias>`_ to require the first stable
+    version.
 
 .. _generateTheFirstTime:
 
@@ -51,4 +59,10 @@ Generate the first time
 Run `./flow generator:build` and open :file:`Output/index.html` in your web browser.
 
 .. tip::
+
     On OS X just run: `./flow generator:build && open Output/index.html`
+
+.. todo::
+
+    Fix command, to allow deletion of folder, even if files are inside. Currently you will get an
+    error that php could not delete the folder, because there are files in it.
