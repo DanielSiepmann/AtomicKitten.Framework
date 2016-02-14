@@ -71,4 +71,19 @@ colleague was inspired by https://www.youtube.com/watch?v=5u-N_EtVESQ
     Usage/index
     Configuration/index
     FolderStructure/index
+    ProjectStructure/index
     Todos/index
+
+.. _helpingHands:
+
+Helping hands
+-------------
+
+The following people helped to release the current state of the software, the names are sort
+alphabetical:
+
+* `fcool <https://github.com/fcool>`_
+* `leonmrni <https://github.com/leonmrni>`_
+
+
+And of course the projects involved, which are mentioned all over in the documentation.

@@ -8,48 +8,32 @@ Getting Started
 Installation
 ------------
 
-Only composer is supported as we need to install some dependencies like the underlying framework
-Flow and template engine Fluid.
+You need composer to install AtomicKitten. If you didn't setup a project with composer yet, follow
+the `official documentation <https://getcomposer.org/doc/00-intro.md>`_ to do so.
 
-Create the following :file:`composer.json` and run `composer install`.
+Git
+---
 
-Content of :file:`composer.json`::
+Just run the following command on CLI:
 
-    {
-        "name": "vendor/projectname",
-        "description": "AtomicKitten",
-        "license": "GPL",
-        "minimum-stability": "dev",
-        "config": {
-            "vendor-dir": "Packages/Libraries",
-            "bin-dir": "bin"
-        },
-        "require": {
-            "typo3/flow": "~3.1.0",
-            "atomickitten/framework": "dev-master"
-        },
-        "scripts": {
-            "post-update-cmd": "TYPO3\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall",
-            "post-install-cmd": "TYPO3\\Flow\\Composer\\InstallerScripts::postUpdateAndInstall",
-            "post-package-update": "TYPO3\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall",
-            "post-package-install": "TYPO3\\Flow\\Composer\\InstallerScripts::postPackageUpdateAndInstall"
-        }
-    }
+.. code-block:: shell
 
-Please adjust `vendor` and `projectname` as needed.
+    git clone https://github.com/DanielSiepmann/AtomicKitten.git && cd AtomicKitten && composer
+    install
 
+Composer
+--------
 
-.. note::
+Just run the following command on CLI:
 
-    During development, we need to set the `minimum-stability` to `dev`. Once the first version is
-    out that will be removed. Until then, composer will clone most dependencies, which can take some
-    time.
+.. code-block:: shell
+
+    composer require "atomickitten/distribution dev-master"
 
 .. todo::
 
-    Remove the need of reducing stability, but use Compoer `Branch alias
-    <https://getcomposer.org/doc/articles/aliases.md#branch-alias>`_ to require the first stable
-    version.
+    Once the first stable version is released, we will update the necessary :file:`composer.json`
+    and you can install as usual with `composer require "atomickitten/distribution dev-master"`.
 
 .. _generateTheFirstTime:
 
