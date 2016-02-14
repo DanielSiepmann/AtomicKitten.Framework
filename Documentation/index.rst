@@ -72,6 +72,7 @@ colleague was inspired by https://www.youtube.com/watch?v=5u-N_EtVESQ
     Configuration/index
     FolderStructure/index
     ProjectStructure/index
+    Appendix/index
     Todos/index
 
 .. _helpingHands:
