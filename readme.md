@@ -5,4 +5,4 @@ Atomic Design like PatternLab implemented in FLOW framework with Fluid Template 
 Full documentation is available at
 [readthedocs.org](http://atomickittenframework.readthedocs.org/).
 
-[![Documentation Status](https://readthedocs.org/projects/atomickittenframework/badge/?version=feature-documentation)](http://atomickittenframework.readthedocs.org/en/feature-documentation/?badge=feature-documentation)
+[![Documentation Status](https://readthedocs.org/projects/atomickittenframework/badge/?version=master)](http://atomickittenframework.readthedocs.org/en/feature-documentation/?badge=master)
