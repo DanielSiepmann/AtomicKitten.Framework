@@ -42,38 +42,28 @@ class AtomicKitten
      */
     public function build()
     {
-        // TODO: Get files from templates folder
         $this->renderTemplates();
-        // TODO: Iterate over files and generate HTML.
-        // $resultFile = new SplFileObject($this->buildSettings['target'] . 'index.html', 'w');
-        // $resultFile->fwrite($view->render('Generator/Index'));
     }
 
-    protected function renderTemplates()
+    protected function getTemplateFiles()
     {
         // TODO: Move folder names (ordering) to settings?
-        foreach (['Atoms', 'Molecules', 'Organisms', 'Templates', 'Pages'] as $folderName) {
-            $folder = new \RecursiveDirectoryIterator(
+        $parts = [
+            'Atoms' => [],
+            'Molecules' => [],
+            'Organisms' => [],
+            'Templates' => [],
+            'Pages' => [],
+        ];
+
+        foreach (array_keys($parts) as $folderName) {
+            $parts[$folderName] = \TYPO3\Flow\Utility\Files::readDirectoryRecursively(
                 $this->buildSettings['source']['atomicKitten']['templates'] . $folderName,
-                \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::SKIP_DOTS
+                '.html'
             );
-
-            foreach ($folder as $folderWithTemplates) {
-                $templateFiles = new \RecursiveDirectoryIterator(
-                    $folderWithTemplates->getPathname(),
-                    \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::SKIP_DOTS
-                );
-
-                foreach ($templateFiles as $templateFile) {
-                    // TODO: Set template filename somewhere via setting?
-                    $this->renderTemplate(
-                        $folderName
-                        . '/' . $folderWithTemplates->getBasename()
-                        . '/' . $templateFile->getBasename('.html')
-                    );
-                }
-            }
         }
+
+        return $parts;
     }
 
     protected function renderTemplate($templateName)

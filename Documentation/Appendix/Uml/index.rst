@@ -5,7 +5,6 @@ UML
 
 All existing UML diagrams.
 
-
 .. figure:: /Images/Uml/GenerationActivity.svg
     :align: center
 

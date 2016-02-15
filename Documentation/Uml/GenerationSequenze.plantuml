@@ -1,8 +1,20 @@
 @startuml
 
-GeneratorCommandController -> GeneratorCommandController: cleanCommand
+"GeneratorCommandController" -> "GeneratorCommandController": cleanCommand
 GeneratorCommandController -> "Generator\AtomicKitten": build
-"Generator\AtomicKitten" -> "Generator\AtomicKitten": getAllTemplateFiles
-"Generator\AtomicKitten" <-- "Generator\AtomicKitten": template files
+"Generator\AtomicKitten" -> "TYPO3\Flow\Utility\Files": readDirectoryRecursively
+"Generator\AtomicKitten" <-- "TYPO3\Flow\Utility\Files": template file names
+"Generator\AtomicKitten" -> "View\AtomicKitten": setPathsFromOptions
+loop for each template file
+    "Generator\AtomicKitten" -> "View\AtomicKitten": render
+    "Generator\AtomicKitten" <-- "View\AtomicKitten": rendered html
+    "Generator\AtomicKitten" -> "SplFileObject": fwrite
+end
+
+note over "Generator\AtomicKitten": At this point all fluid templates were parsed and are available via browser.\nBut no framework is wrapped around.
+
+"GeneratorCommandController" <-- "Generator\AtomicKitten": template file names
+
+"GeneratorCommandController" -> "Generator\Framework": build
 
 @enduml
