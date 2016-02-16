@@ -1,20 +1,54 @@
 @startuml
 
+== Generate AtomicKitten ==
+
 "GeneratorCommandController" -> "GeneratorCommandController": cleanCommand
-GeneratorCommandController -> "Generator\AtomicKitten": build
-"Generator\AtomicKitten" -> "TYPO3\Flow\Utility\Files": readDirectoryRecursively
-"Generator\AtomicKitten" <-- "TYPO3\Flow\Utility\Files": template file names
-"Generator\AtomicKitten" -> "View\AtomicKitten": setPathsFromOptions
-loop for each template file
-    "Generator\AtomicKitten" -> "View\AtomicKitten": render
-    "Generator\AtomicKitten" <-- "View\AtomicKitten": rendered html
-    "Generator\AtomicKitten" -> "SplFileObject": fwrite
-end
+"GeneratorCommandController" -> "Generator\AtomicKitten": build
+activate "Generator\AtomicKitten"
+    "Generator\AtomicKitten" -> "TYPO3\Flow\Utility\Files": readDirectoryRecursively
+    activate "TYPO3\Flow\Utility\Files"
+        "Generator\AtomicKitten" <-- "TYPO3\Flow\Utility\Files": template file names
+    deactivate "TYPO3\Flow\Utility\Files"
+    "Generator\AtomicKitten" -> "View\AtomicKitten": setPathsFromOptions
+    loop for each template file
+        "Generator\AtomicKitten" -> "View\AtomicKitten": render
+        activate "View\AtomicKitten"
+            "Generator\AtomicKitten" <-- "View\AtomicKitten": rendered html
+        deactivate "View\AtomicKitten"
+        "Generator\AtomicKitten" -> "SplFileObject": fwrite
+    end
 
-note over "Generator\AtomicKitten": At this point all fluid templates were parsed and are available via browser.\nBut no framework is wrapped around.
+    note over "Generator\AtomicKitten": At this point all fluid templates were parsed and are available via browser.\nBut no framework is wrapped around.
 
-"GeneratorCommandController" <-- "Generator\AtomicKitten": template file names
+    "GeneratorCommandController" <-- "Generator\AtomicKitten": template file names
+deactivate "Generator\AtomicKitten"
+
+== Generate Framework ==
 
 "GeneratorCommandController" -> "Generator\Framework": build
+activate "Generator\Framework"
+    "Generator\Framework" -> "Generator\Framework": generateAll
+    activate "Generator\Framework"
+        "Generator\Framework" -> "SplFileObject": fwrite
+    deactivate "Generator\Framework"
+    loop for each navigation point
+        "Generator\Framework" -> "Generator\Framework": generateNavigationPoint
+        activate "Generator\Framework"
+        loop for each sub navigation point
+            "Generator\Framework" -> "Generator\Framework": generateNavigationPoint
+            activate "Generator\Framework"
+                "Generator\Framework" -> "Generator\Framework": sortPoints
+                "Generator\Framework" -> "SplFileObject": fwrite
+            deactivate "Generator\Framework"
+        end
+            "Generator\Framework" -> "Generator\Framework": sortPoints
+            "Generator\Framework" -> "SplFileObject": fwrite
+        deactivate "Generator\Framework"
+    end
+    "Generator\Framework" -> "Generator\Framework": generateNavigation
+    activate "Generator\Framework"
+        "Generator\Framework" -> "SplFileObject": fwrite
+    deactivate "Generator\Framework"
+deactivate "Generator\Framework"
 
 @enduml
