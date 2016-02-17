@@ -11,6 +11,8 @@ Installation
 You need composer to install AtomicKitten. If you didn't setup a project with composer yet, follow
 the `official documentation <https://getcomposer.org/doc/00-intro.md>`_ to do so.
 
+.. _installation-git:
+
 Git
 ---
 
@@ -21,19 +23,15 @@ Just run the following command on CLI:
     git clone https://github.com/DanielSiepmann/AtomicKitten.git && cd AtomicKitten && composer
     install
 
+.. _installation-composer:
+
 Composer
 --------
-
-Just run the following command on CLI:
-
-.. code-block:: shell
-
-    composer require "atomickitten/distribution dev-master"
 
 .. todo::
 
     Once the first stable version is released, we will update the necessary :file:`composer.json`
-    and you can install as usual with `composer require "atomickitten/distribution dev-master"`.
+    and you can install as usual with `composer require "atomickitten/distribution"`.
 
 .. _generateTheFirstTime:
 
