@@ -104,14 +104,7 @@ class AtomicKitten
         foreach ($templates as $navigationTitle => $templateNames) {
             foreach ($templateNames as $templateName) {
                 $targetFilename = $this->targetFolder . $navigationTitle . '/' . basename($templateName);
-                $fileNameForRendering = substr(
-                    $templateName,
-                    strpos(
-                        $templateName,
-                        // TODO: Use configured path here!
-                        'Templates'
-                    ) + strlen('Templates') + 1
-                );
+                $fileNameForRendering = str_replace($this->templatesFolder, '', $templateName);
 
                 $this->writeRenderedTemplate(
                     $this->renderTemplate($fileNameForRendering),
