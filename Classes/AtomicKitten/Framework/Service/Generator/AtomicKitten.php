@@ -33,15 +33,33 @@ use TYPO3\Flow\Annotations as Flow;
 class AtomicKitten
 {
     /**
-     * @Flow\InjectConfiguration(package="AtomicKitten.Framework", path="build")
-     * @var array
+     * @Flow\InjectConfiguration(package="AtomicKitten.Framework", path="build.target.outputFolder")
+     * @var string
      */
-    protected $buildSettings;
+    protected $targetFolder;
 
     /**
-     * Generate files from AtomicKitten.
+     * @Flow\InjectConfiguration(package="AtomicKitten.Framework", path="build.source.atomicKitten.templates")
+     * @var string
+     */
+    protected $templatesFolder;
+
+    /**
+     * @Flow\InjectConfiguration(package="AtomicKitten.Framework", path="build.source.atomicKitten.folders.firstLevel")
+     * @var string
+     */
+    protected $navigationNames;
+
+    /**
+     * @Flow\InjectConfiguration(package="AtomicKitten.Framework", path="build.source.atomicKitten.format")
+     * @var string
+     */
+    protected $sourceFormat;
+
+    /**
+     * Generate static html files from AtomicKitten.
      *
-     * @return void
+     * @return array
      */
     public function build()
     {
@@ -58,19 +76,11 @@ class AtomicKitten
      */
     protected function getTemplateFiles()
     {
-        // TODO: Move folder names (ordering) to settings.
-        $parts = [
-            'Atoms' => [],
-            'Molecules' => [],
-            'Organisms' => [],
-            'Templates' => [],
-            'Pages' => [],
-        ];
-
-        foreach (array_keys($parts) as $folderName) {
+        $parts = [];
+        foreach ($this->navigationNames as $folderName) {
             $parts[$folderName] = \TYPO3\Flow\Utility\Files::readDirectoryRecursively(
-                $this->buildSettings['source']['atomicKitten']['templates'] . $folderName,
-                '.html'
+                $this->templatesFolder . $folderName,
+                '.' . $this->sourceFormat
             );
         }
 
@@ -93,7 +103,7 @@ class AtomicKitten
         // work on single template, also provide navigation title.
         foreach ($templates as $navigationTitle => $templateNames) {
             foreach ($templateNames as $templateName) {
-                $targetFilename = $this->buildSettings['target'] . $navigationTitle . '/' . basename($templateName);
+                $targetFilename = $this->targetFolder . $navigationTitle . '/' . basename($templateName);
                 $fileNameForRendering = substr(
                     $templateName,
                     strpos(
@@ -119,8 +129,9 @@ class AtomicKitten
     protected function renderTemplate($templateName)
     {
         $view = new View\AtomicKitten;
+        $view->setFormat($this->sourceFormat);
         $view->setPathsFromOptions('AtomicKitten.Framework.build.source.atomicKitten');
-        $templateName = str_replace('.' . $view->getFormat(), '', $templateName);
+        $templateName = str_replace('.' . $this->sourceFormat, '', $templateName);
         return $view->render($templateName);
     }
 

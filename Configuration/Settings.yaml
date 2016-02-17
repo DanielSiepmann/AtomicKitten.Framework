@@ -2,9 +2,11 @@ AtomicKitten:
   Framework:
     # All configuration options, used for build process.
     build:
-      # Folder to place generated output inside.
-      target: '%FLOW_PATH_ROOT%Output/'
-      # Settings where different parts can be found, that will be parsed to generate output.
+      # Settings for generated output.
+      target:
+        # Folder to place generated output inside.
+        outputFolder: '%FLOW_PATH_ROOT%Output/'
+      # Settings for sources that will be parsed.
       source:
         # Related to framework parts. You can overwrite them to change the surrounding parts and functionality of AtomicKitten.
         framework:
@@ -17,3 +19,14 @@ AtomicKitten:
           partials: '%FLOW_PATH_PACKAGES%Application/AtomicKitten.Example/Resources/Private/Partials/'
           layouts: '%FLOW_PATH_PACKAGES%Application/AtomicKitten.Example/Resources/Private/Layouts/'
           templates: '%FLOW_PATH_PACKAGES%Application/AtomicKitten.Example/Resources/Private/Templates/'
+          # The format of provided templates. They have to use it as extension.
+          format: 'html'
+          folders:
+            # Folders inside template folder, will be used to generate navigation in defined order.
+            # Also, all files have to be in one of the folders.
+            firstLevel:
+              - Atoms
+              - Molecules
+              - Organisms
+              - Templates
+              - Pages

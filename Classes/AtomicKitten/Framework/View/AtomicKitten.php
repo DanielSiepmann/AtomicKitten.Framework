@@ -37,7 +37,6 @@ class AtomicKitten extends StandaloneView
         parent::initializeObject();
 
         $this->setPathsFromOptions();
-        $this->setFormat('html');
 
         // Doesn't work without setting rendering context.
         // Even if StandaloneView works and we just extend it.
