@@ -91,7 +91,10 @@ class AtomicKitten
      * Rendeer all provided templates.
      *
      * Structure has to follow:
-     *  'partName' => 'folders' => 'absolute fil names'
+     *  'navigation name' => [
+     *      'absolute file name',
+     *      'absolute file name',
+     *  ]
      *
      *  @param array $templates
      *

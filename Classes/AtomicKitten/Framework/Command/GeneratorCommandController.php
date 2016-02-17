@@ -47,7 +47,7 @@ class GeneratorCommandController extends CommandController
     public function buildCommand()
     {
         $this->cleanCommand();
-        $framework = new Generator\Framework;
+        // $framework = new Generator\Framework;
         $atomicKitten = new Generator\AtomicKitten;
 
         $this->outputLine('Generation of framework finished.', [], CommandController::OK);
@@ -66,10 +66,10 @@ class GeneratorCommandController extends CommandController
      */
     public function cleanCommand()
     {
-        if (is_dir($this->buildSettings['target'])) {
-            \TYPO3\Flow\Utility\Files::removeDirectoryRecursively($this->buildSettings['target']);
+        if (is_dir($this->buildSettings['target']['outputFolder'])) {
+            \TYPO3\Flow\Utility\Files::removeDirectoryRecursively($this->buildSettings['target']['outputFolder']);
         }
-        mkdir($this->buildSettings['target']);
+        mkdir($this->buildSettings['target']['outputFolder']);
 
         $this->outputLine('Cleaned target folder.', [], CommandController::OK);
     }
