@@ -32,10 +32,10 @@ use AtomicKitten\Framework\Service\Generator;
 class GeneratorCommandController extends CommandController
 {
     /**
-     * @Flow\InjectConfiguration(package="AtomicKitten.Framework", path="build")
-     * @var array
+     * @Flow\InjectConfiguration(package="AtomicKitten.Framework", path="build.target.outputFolder")
+     * @var string
      */
-    protected $buildSettings;
+    protected $targetFolder;
 
     /**
      * Will generate the static AtomicKitten.
@@ -66,10 +66,10 @@ class GeneratorCommandController extends CommandController
      */
     public function cleanCommand()
     {
-        if (is_dir($this->buildSettings['target']['outputFolder'])) {
-            \TYPO3\Flow\Utility\Files::removeDirectoryRecursively($this->buildSettings['target']['outputFolder']);
+        if (is_dir($this->targetFolder)) {
+            \TYPO3\Flow\Utility\Files::removeDirectoryRecursively($this->targetFolder);
         }
-        mkdir($this->buildSettings['target']['outputFolder']);
+        mkdir($this->targetFolder);
 
         $this->outputLine('Cleaned target folder.', [], CommandController::OK);
     }
