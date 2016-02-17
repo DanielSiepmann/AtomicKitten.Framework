@@ -54,7 +54,7 @@ class Framework
         // $resultFile->fwrite($view->render('Generator/Index'));
     }
 
-    protected function buildAll(array $templates);
-    {
-    }
+    // protected function buildAll(array $templates);
+    // {
+    // }
 }
