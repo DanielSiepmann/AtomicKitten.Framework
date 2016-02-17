@@ -47,14 +47,12 @@ class GeneratorCommandController extends CommandController
     public function buildCommand()
     {
         $this->cleanCommand();
-        // $framework = new Generator\Framework;
+        $framework = new Generator\Framework;
         $atomicKitten = new Generator\AtomicKitten;
 
         $this->outputLine('Generation of framework finished.', [], CommandController::OK);
-        $atomicKitten->build();
-        // $templateNames = $atomicKitten->build();
-        // TODO: Use in construct?
-        // $framework->build($templateNames);
+        $templateNames = $atomicKitten->build();
+        $framework->build($templateNames);
 
         $this->outputLine('Generation finished.', [], CommandController::OK);
     }

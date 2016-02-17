@@ -27,13 +27,18 @@ use TYPO3\Flow\Annotations as Flow;
  * This class provides the public API to generate different parts of
  * AtomicKitten.
  */
-class Framework
+class Framework extends AbstractGenerator
 {
     /**
      * @Flow\InjectConfiguration(package="AtomicKitten.Framework", path="build")
      * @var array
      */
     protected $buildSettings;
+
+    /**
+     * @var array
+     */
+    protected $templates;
 
     /**
      * Generate files from framework.
@@ -44,17 +49,24 @@ class Framework
      */
     public function build(array $templates)
     {
-        $this->buildAll($templates);
-        // foreach ($templates as $navigationPoint) {
-        //     $this->generateNavigationPoint($navigationPoint);
-        // }
-        // $this->generateNavigation($templates);
-        // $view = new View\AtomicKitten;
-        // $resultFile = new SplFileObject($this->buildSettings['target'] . 'index.html', 'w');
-        // $resultFile->fwrite($view->render('Generator/Index'));
+        $this->templates = $templates;
+        $this->buildAll();
     }
 
-    // protected function buildAll(array $templates);
-    // {
-    // }
+    protected function buildAll()
+    {
+        // TODO: Refactor to utility / service. Use callbacks as argument to
+        // work on single template, also provide navigation title.
+        $viewVariables = [];
+        foreach ($this->templates as $navTitle => $templateNames) {
+            foreach ($templateNames as $templateName) {
+                $viewVariables[$navTitle] = '';
+            }
+        }
+
+        $this->writeRenderedTemplate(
+            $this->renderTemplate('Generator/All', $viewVariables),
+            $this->targetFolder . 'All.html'
+        );
+    }
 }

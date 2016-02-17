@@ -30,14 +30,8 @@ use TYPO3\Flow\Annotations as Flow;
  * @TODO: Copy patternlab.io _patterns to example and test whether everything
  * is generated as expected.
  */
-class AtomicKitten
+class AtomicKitten extends AbstractGenerator
 {
-    /**
-     * @Flow\InjectConfiguration(package="AtomicKitten.Framework", path="build.target.outputFolder")
-     * @var string
-     */
-    protected $targetFolder;
-
     /**
      * @Flow\InjectConfiguration(package="AtomicKitten.Framework", path="build.source.atomicKitten.templates")
      * @var string
@@ -45,16 +39,9 @@ class AtomicKitten
     protected $templatesFolder;
 
     /**
-     * @Flow\InjectConfiguration(package="AtomicKitten.Framework", path="build.source.atomicKitten.folders.firstLevel")
      * @var string
      */
-    protected $navigationNames;
-
-    /**
-     * @Flow\InjectConfiguration(package="AtomicKitten.Framework", path="build.source.atomicKitten.format")
-     * @var string
-     */
-    protected $sourceFormat;
+    protected $viewConfigPath = 'AtomicKitten.Framework.build.source.atomicKitten';
 
     /**
      * Generate static html files from AtomicKitten.
@@ -115,38 +102,5 @@ class AtomicKitten
                 );
             }
         }
-    }
-
-    /**
-     * Render file with given name.
-     *
-     * @return string Rendered content
-     */
-    protected function renderTemplate($templateName)
-    {
-        $view = new View\AtomicKitten;
-        $view->setFormat($this->sourceFormat);
-        $view->setPathsFromOptions('AtomicKitten.Framework.build.source.atomicKitten');
-        $templateName = str_replace('.' . $this->sourceFormat, '', $templateName);
-        return $view->render($templateName);
-    }
-
-    /**
-     * Write content of rendered template to file.
-     *
-     * @param string $templateContent The content to write.
-     * @param string $targetFilename Absolute file name.
-     *
-     * @return void
-     */
-    protected function writeRenderedTemplate($templateContent, $targetFilename)
-    {
-        if (!is_dir(dirname($targetFilename))) {
-            // TODO: Make 0777 configurable?
-            mkdir(dirname($targetFilename), 0777, true);
-        }
-
-        $resultFile = new SplFileObject($targetFilename, 'w');
-        $resultFile->fwrite($templateContent);
     }
 }
