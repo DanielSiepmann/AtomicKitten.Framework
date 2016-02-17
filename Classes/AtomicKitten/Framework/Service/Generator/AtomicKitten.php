@@ -26,6 +26,9 @@ use TYPO3\Flow\Annotations as Flow;
 /**
  * Generator for AtomicKitten, will parse the templates and generate static
  * html output.
+ *
+ * @TODO: Copy patternlab.io _patterns to example and test whether everything
+ * is generated as expected.
  */
 class AtomicKitten
 {
@@ -42,51 +45,101 @@ class AtomicKitten
      */
     public function build()
     {
-        // TODO: Get files from templates folder
-        $this->renderTemplates();
-        // TODO: Iterate over files and generate HTML.
-        // $resultFile = new SplFileObject($this->buildSettings['target'] . 'index.html', 'w');
-        // $resultFile->fwrite($view->render('Generator/Index'));
+        $templates = $this->getTemplateFiles();
+        $this->renderTemplates($templates);
+
+        return $templates;
     }
 
-    protected function renderTemplates()
+    /**
+     * Get all absolute file names to render.
+     *
+     * @return array
+     */
+    protected function getTemplateFiles()
     {
-        // TODO: Move folder names (ordering) to settings?
-        foreach (['Atoms', 'Molecules', 'Organisms', 'Templates', 'Pages'] as $folderName) {
-            $folder = new \RecursiveDirectoryIterator(
-                $this->buildSettings['source']['atomicKitten']['templates'] . $folderName,
-                \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::SKIP_DOTS
-            );
+        // TODO: Move folder names (ordering) to settings.
+        $parts = [
+            'Atoms' => [],
+            'Molecules' => [],
+            'Organisms' => [],
+            'Templates' => [],
+            'Pages' => [],
+        ];
 
-            foreach ($folder as $folderWithTemplates) {
-                $templateFiles = new \RecursiveDirectoryIterator(
-                    $folderWithTemplates->getPathname(),
-                    \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::SKIP_DOTS
+        foreach (array_keys($parts) as $folderName) {
+            $parts[$folderName] = \TYPO3\Flow\Utility\Files::readDirectoryRecursively(
+                $this->buildSettings['source']['atomicKitten']['templates'] . $folderName,
+                '.html'
+            );
+        }
+
+        return $parts;
+    }
+
+    /**
+     * Rendeer all provided templates.
+     *
+     * Structure has to follow:
+     *  'partName' => 'folders' => 'absolute fil names'
+     *
+     *  @param array $templates
+     *
+     *  @return void
+     */
+    protected function renderTemplates(array $templates)
+    {
+        // TODO: Refactor to utility / service. Use callbacks as argument to
+        // work on single template, also provide navigation title.
+        foreach ($templates as $navigationTitle => $templateNames) {
+            foreach ($templateNames as $templateName) {
+                $targetFilename = $this->buildSettings['target'] . $navigationTitle . '/' . basename($templateName);
+                $fileNameForRendering = substr(
+                    $templateName,
+                    strpos(
+                        $templateName,
+                        // TODO: Use configured path here!
+                        'Templates'
+                    ) + strlen('Templates') + 1
                 );
 
-                foreach ($templateFiles as $templateFile) {
-                    // TODO: Set template filename somewhere via setting?
-                    $this->renderTemplate(
-                        $folderName
-                        . '/' . $folderWithTemplates->getBasename()
-                        . '/' . $templateFile->getBasename('.html')
-                    );
-                }
+                $this->writeRenderedTemplate(
+                    $this->renderTemplate($fileNameForRendering),
+                    $targetFilename
+                );
             }
         }
     }
 
+    /**
+     * Render file with given name.
+     *
+     * @return string Rendered content
+     */
     protected function renderTemplate($templateName)
     {
         $view = new View\AtomicKitten;
         $view->setPathsFromOptions('AtomicKitten.Framework.build.source.atomicKitten');
-        $targetFilename = $this->buildSettings['target'] . $templateName;
+        $templateName = str_replace('.' . $view->getFormat(), '', $templateName);
+        return $view->render($templateName);
+    }
 
+    /**
+     * Write content of rendered template to file.
+     *
+     * @param string $templateContent The content to write.
+     * @param string $targetFilename Absolute file name.
+     *
+     * @return void
+     */
+    protected function writeRenderedTemplate($templateContent, $targetFilename)
+    {
         if (!is_dir(dirname($targetFilename))) {
+            // TODO: Make 0777 configurable?
             mkdir(dirname($targetFilename), 0777, true);
         }
 
-        $resultFile = new SplFileObject($targetFilename . '.html', 'w');
-        $resultFile->fwrite($view->render($templateName));
+        $resultFile = new SplFileObject($targetFilename, 'w');
+        $resultFile->fwrite($templateContent);
     }
 }

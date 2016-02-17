@@ -42,10 +42,19 @@ class Framework
      *
      * @return void
      */
-    public function build()
+    public function build(array $templates)
     {
-        $view = new View\AtomicKitten;
-        $resultFile = new SplFileObject($this->buildSettings['target'] . 'index.html', 'w');
-        $resultFile->fwrite($view->render('Generator/Index'));
+        $this->buildAll($templates);
+        // foreach ($templates as $navigationPoint) {
+        //     $this->generateNavigationPoint($navigationPoint);
+        // }
+        // $this->generateNavigation($templates);
+        // $view = new View\AtomicKitten;
+        // $resultFile = new SplFileObject($this->buildSettings['target'] . 'index.html', 'w');
+        // $resultFile->fwrite($view->render('Generator/Index'));
+    }
+
+    protected function buildAll(array $templates);
+    {
     }
 }

@@ -52,7 +52,9 @@ class GeneratorCommandController extends CommandController
 
         $framework->build();
         $this->outputLine('Generation of framework finished.', [], CommandController::OK);
-        $atomicKitten->build();
+        $templateNames = $atomicKitten->build();
+        // TODO: Use in construct?
+        // $framework->build($templateNames);
 
         $this->outputLine('Generation finished.', [], CommandController::OK);
     }
