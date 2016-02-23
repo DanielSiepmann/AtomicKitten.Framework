@@ -20,8 +20,7 @@ Just run the following command on CLI:
 
 .. code-block:: shell
 
-    git clone https://github.com/DanielSiepmann/AtomicKitten.git && cd AtomicKitten && composer
-    install
+    git clone https://github.com/DanielSiepmann/AtomicKitten.git && cd AtomicKitten && composer install
 
 .. _installation-composer:
 
