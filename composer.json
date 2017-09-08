@@ -15,17 +15,11 @@
         "docs": "http://atomickittenframework.readthedocs.org/"
     },
     "require": {
-        "typo3/flow": "~3.1.0",
-        "atomickitten/example": "*"
+        "typo3/flow": "~3.1.0"
     },
     "autoload": {
         "psr-0": {
             "AtomicKitten\\Framework": "Classes"
-        }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
         }
     }
 }
